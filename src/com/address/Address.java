@@ -7,9 +7,9 @@ public class Address {
     String city;
     String address;
     String email;
-    long mobile;
+    String mobile;
     int zip;
-    Address(String firstName,String lastName,String city,String address,String email,long mobile,int zip)
+    Address(String firstName, String lastName, String city, String address, String email, String mobile, int zip)
     {
         this.firstName=firstName;
         this.lastName=lastName;
