@@ -1,6 +1,7 @@
 package com.address;
 
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class AddressList {
@@ -10,6 +11,7 @@ public class AddressList {
         Scanner sc=new Scanner(System.in);
         ArrayList<Address> list=new ArrayList<>();
         int choice,zip,editField;
+        int status;
         String lastName,address,email,city,mobile,firstName,search,fullName;
         do {
             System.out.println(" 1 - Add Contacts");
@@ -103,7 +105,7 @@ public class AddressList {
                                     break;
                                 case 7:
                                     sc.nextLine();
-                                    System.out.println("Enter the Pincode");
+                                    System.out.println("Enter the zip");
                                     zip=sc.nextInt();
                                     list.get(i).setZip(zip);
                                     System.out.println("Update zip "+zip);
@@ -112,18 +114,44 @@ public class AddressList {
                     }
                     break;
                 case 3:
+                    status=0;
                     sc.nextLine();
                     System.out.println("Enter name to be deleted ");
                     search=sc.nextLine();
                     for(int i=0;i< list.size();i++)
                     {
-                        fullName=list.get(i).firstName+' '+list.get(i).lastName;
-                        if(fullName==search)
+
+                        firstName=list.get(i).firstName;
+                        if(Objects.equals(firstName, search))
                         {
+                            status=1;
                             list.remove(i);
+
                         }
                     }
+                    if(status==0)
+                    {
+                        System.out.println("Not found ");
+                    }
                     break;
+
+                case 4:
+                    for(int i=0;i<list.size();i++)
+                    {
+                        System.out.println("First Name " + list.get(i).firstName);
+                        System.out.println("Last Name " + list.get(i).lastName);
+                        System.out.println("Address " + list.get(i).address);
+                        System.out.println("City " + list.get(i).city);
+                        System.out.println("Email " + list.get(i).email);
+                        System.out.println("Mobile " + list.get(i).mobile);
+                        System.out.println("Zip " + list.get(i).zip);
+                    }
+                    if(list.isEmpty())
+                    {
+                        System.out.println("The list is empty ");
+                    }
+                    break;
+
             }
         }while(choice!=4);
     }
